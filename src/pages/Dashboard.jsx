@@ -155,15 +155,15 @@ export default function Dashboard() {
   }
 
   const StatCard = ({ icon: Icon, label, value, color, subtitle }) => (
-    <div className="glass glass-hover rounded-2xl p-6 transition-all fade-in">
-      <div className="flex items-start justify-between">
-        <div>
-          <p className="text-gray-400 text-sm font-medium">{label}</p>
-          <p className="text-2xl font-bold text-white mt-1">{value}</p>
-          {subtitle && <p className="text-xs text-gray-500 mt-1">{subtitle}</p>}
+    <div className="glass glass-hover rounded-2xl p-4 transition-all fade-in">
+      <div className="flex items-start justify-between gap-2">
+        <div className="min-w-0 flex-1">
+          <p className="text-gray-400 text-xs font-medium">{label}</p>
+          <p className="text-lg font-bold text-white mt-1 truncate">{value}</p>
+          {subtitle && <p className="text-xs text-gray-500 mt-0.5 truncate">{subtitle}</p>}
         </div>
-        <div className="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0" style={{ background: `${color}20`, border: `1px solid ${color}40` }}>
-          <Icon size={22} style={{ color }} />
+        <div className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0" style={{ background: `${color}20`, border: `1px solid ${color}40` }}>
+          <Icon size={18} style={{ color }} />
         </div>
       </div>
     </div>
@@ -185,17 +185,19 @@ export default function Dashboard() {
           <h1 className="text-2xl font-bold text-white">Dashboard</h1>
           <p className="text-gray-400 text-sm mt-1">Visão geral das suas comissões de consórcio</p>
         </div>
-        <div className="flex items-center gap-2 overflow-x-auto pb-1" style={{ scrollbarWidth: 'none' }}>
+        <div className="flex items-center gap-2 overflow-x-auto pb-2" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none', WebkitOverflowScrolling: 'touch' }}>
           <Calendar size={16} className="text-gray-400 flex-shrink-0" />
           {PERIODOS.map(p => (
             <button
               key={p.value}
               onClick={() => setPeriodo(p.value)}
-              className="px-3 py-1.5 rounded-lg text-sm font-medium transition-all flex-shrink-0"
-              style={periodo === p.value
-                ? { background: 'linear-gradient(135deg,#6366f1,#8b5cf6)', color: 'white' }
-                : { background: 'rgba(255,255,255,0.05)', color: '#9ca3af' }
-              }
+              className="px-3 py-1.5 rounded-lg font-medium transition-all flex-shrink-0 whitespace-nowrap"
+              style={{
+                fontSize: '13px',
+                ...(periodo === p.value
+                  ? { background: 'linear-gradient(135deg,#6366f1,#8b5cf6)', color: 'white' }
+                  : { background: 'rgba(255,255,255,0.05)', color: '#9ca3af' })
+              }}
             >
               {p.label}
             </button>
