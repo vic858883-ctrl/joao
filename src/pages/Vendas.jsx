@@ -3,7 +3,7 @@ import { supabase } from '../lib/supabase'
 import { useAuth } from '../contexts/AuthContext'
 import { gerarParcelas, formatCurrency, formatPercent } from '../lib/commissions'
 import { Plus, Search, Trash2, Eye, X, ShoppingBag, Edit2 } from 'lucide-react'
-import { format } from 'date-fns'
+import { format, addMonths, startOfMonth } from 'date-fns'
 import { ptBR } from 'date-fns/locale'
 
 const STATUS_LABELS = { ativa: 'Ativa', cancelada: 'Cancelada' }
@@ -122,7 +122,6 @@ export default function Vendas() {
         // Gerar parcelas do revendedor se houver
         if (payload.revendedor_id && payload.percentual_revendedor > 0) {
           const valorParcelaRev = (Number(payload.valor_venda) * Number(payload.percentual_revendedor)) / 100
-          const { addMonths, startOfMonth, format: fmt } = await import('date-fns')
           const parcelasRev = []
           const dataBase = startOfMonth(new Date(payload.data_venda + 'T00:00:00'))
           for (let i = 0; i < Number(payload.meses_recebimento); i++) {
@@ -132,7 +131,7 @@ export default function Vendas() {
               venda_id: data.id,
               revendedor_id: payload.revendedor_id,
               numero_parcela: i + 1,
-              mes_referencia: fmt(mesRef, 'yyyy-MM-dd'),
+              mes_referencia: format(mesRef, 'yyyy-MM-dd'),
               valor_bruto: Number(valorParcelaRev.toFixed(2)),
               status: 'pendente',
             })
