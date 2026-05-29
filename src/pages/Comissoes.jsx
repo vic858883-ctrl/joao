@@ -2,7 +2,8 @@ import { useEffect, useState } from 'react'
 import { supabase } from '../lib/supabase'
 import { useAuth } from '../contexts/AuthContext'
 import { formatCurrency } from '../lib/commissions'
-import { CheckCircle, Clock, Filter, DollarSign } from 'lucide-react'
+import { CheckCircle, Clock, Filter, DollarSign, FileDown } from 'lucide-react'
+import { gerarRelatorioPDF } from '../lib/pdf'
 import { format } from 'date-fns'
 import { ptBR } from 'date-fns/locale'
 
@@ -55,9 +56,14 @@ export default function Comissoes() {
 
   return (
     <div className="space-y-6 fade-in">
-      <div>
-        <h1 className="text-2xl font-bold text-white">Comissões</h1>
-        <p className="text-gray-400 text-sm mt-1">Todas as parcelas de comissão geradas</p>
+      <div className="flex items-center justify-between">
+        <div>
+          <h1 className="text-2xl font-bold text-white">Comissões</h1>
+          <p className="text-gray-400 text-sm mt-1">Todas as parcelas de comissão geradas</p>
+        </div>
+        <button className="btn-secondary" onClick={() => gerarRelatorioPDF(filtered, filtroMes)}>
+          <FileDown size={16} /> Exportar PDF
+        </button>
       </div>
 
       {/* Totais */}

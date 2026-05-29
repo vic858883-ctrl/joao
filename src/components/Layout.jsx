@@ -5,6 +5,7 @@ import {
   LayoutDashboard, Users, ShoppingBag, DollarSign,
   RotateCcw, Building2, Menu, X, LogOut, TrendingUp, ChevronRight, FileUp, Users2
 } from 'lucide-react'
+import Notificacoes from './Notificacoes'
 
 const nav = [
   { to: '/', icon: LayoutDashboard, label: 'Dashboard' },
@@ -71,6 +72,10 @@ export default function Layout({ children }) {
 
       {/* User */}
       <div className="p-4 border-t" style={{ borderColor: 'rgba(99,102,241,0.1)' }}>
+        <div className="flex items-center gap-2 mb-3">
+          <Notificacoes />
+          <span className="text-xs text-gray-500">Notificações</span>
+        </div>
         <div className="flex items-center gap-3 px-3 py-2 rounded-xl" style={{ background: 'rgba(255,255,255,0.03)' }}>
           <div className="w-8 h-8 rounded-full flex items-center justify-center text-white text-sm font-bold" style={{ background: 'linear-gradient(135deg,#6366f1,#8b5cf6)' }}>
             {user?.email?.[0]?.toUpperCase()}
@@ -111,9 +116,12 @@ export default function Layout({ children }) {
             </div>
             <span className="font-bold">ConsórcioPRO</span>
           </div>
-          <button onClick={() => setOpen(true)} className="text-gray-400">
-            <Menu size={24} />
-          </button>
+          <div className="flex items-center gap-2">
+            <Notificacoes />
+            <button onClick={() => setOpen(true)} className="text-gray-400">
+              <Menu size={24} />
+            </button>
+          </div>
         </header>
 
         <main className="flex-1 p-4 lg:p-8 overflow-auto">

@@ -180,18 +180,18 @@ export default function Dashboard() {
 
   return (
     <div className="space-y-6 fade-in">
-      <div className="flex flex-wrap items-center justify-between gap-4">
+      <div className="space-y-3">
         <div>
           <h1 className="text-2xl font-bold text-white">Dashboard</h1>
           <p className="text-gray-400 text-sm mt-1">Visão geral das suas comissões de consórcio</p>
         </div>
-        <div className="flex items-center gap-2 flex-wrap">
-          <Calendar size={16} className="text-gray-400" />
+        <div className="flex items-center gap-2 overflow-x-auto pb-1" style={{ scrollbarWidth: 'none' }}>
+          <Calendar size={16} className="text-gray-400 flex-shrink-0" />
           {PERIODOS.map(p => (
             <button
               key={p.value}
               onClick={() => setPeriodo(p.value)}
-              className="px-3 py-1.5 rounded-lg text-sm font-medium transition-all"
+              className="px-3 py-1.5 rounded-lg text-sm font-medium transition-all flex-shrink-0"
               style={periodo === p.value
                 ? { background: 'linear-gradient(135deg,#6366f1,#8b5cf6)', color: 'white' }
                 : { background: 'rgba(255,255,255,0.05)', color: '#9ca3af' }
