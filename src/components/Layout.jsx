@@ -111,17 +111,15 @@ export default function Layout({ children }) {
         {/* Mobile header */}
         <header className="lg:hidden flex items-center justify-between p-4 border-b" style={{ background: 'rgba(10,15,30,0.95)', borderColor: 'rgba(99,102,241,0.1)' }}>
           <div className="flex items-center gap-3">
+            <button onClick={() => setOpen(true)} className="text-gray-400">
+              <Menu size={24} />
+            </button>
             <div className="w-8 h-8 rounded-lg flex items-center justify-center" style={{ background: 'linear-gradient(135deg,#6366f1,#8b5cf6)' }}>
               <TrendingUp size={16} color="white" />
             </div>
             <span className="font-bold">ConsórcioPRO</span>
           </div>
-          <div className="flex items-center gap-2">
-            <Notificacoes />
-            <button onClick={() => setOpen(true)} className="text-gray-400">
-              <Menu size={24} />
-            </button>
-          </div>
+          <Notificacoes />
         </header>
 
         <main className="flex-1 p-4 lg:p-8 overflow-auto">
