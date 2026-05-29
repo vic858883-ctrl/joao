@@ -157,10 +157,10 @@ export default function Dashboard() {
   const StatCard = ({ icon: Icon, label, value, color, subtitle }) => (
     <div className="glass glass-hover rounded-2xl p-4 transition-all fade-in">
       <div className="flex items-start justify-between gap-2">
-        <div className="min-w-0 flex-1">
-          <p className="text-gray-400 text-xs font-medium">{label}</p>
-          <p className="text-lg font-bold text-white mt-1 truncate">{value}</p>
-          {subtitle && <p className="text-xs text-gray-500 mt-0.5 truncate">{subtitle}</p>}
+        <div className="flex-1 min-w-0">
+          <p className="text-gray-400 text-xs font-medium mb-1">{label}</p>
+          <p className="font-bold text-white break-all leading-tight" style={{ fontSize: 'clamp(14px, 3.5vw, 22px)' }}>{value}</p>
+          {subtitle && <p className="text-xs text-gray-500 mt-1">{subtitle}</p>}
         </div>
         <div className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0" style={{ background: `${color}20`, border: `1px solid ${color}40` }}>
           <Icon size={18} style={{ color }} />
